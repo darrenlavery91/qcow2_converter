@@ -1,0 +1,14 @@
+FROM debian:latest
+
+RUN apt-get update && \
+    apt-get install -y qemu-utils && \
+    rm -rf /var/lib/apt/lists/* \
+
+RUN mkdir -p /data/input /data/output
+RUN mkdir -p /var/log/
+COPY convert.sh /usr/local/bin/convert.sh
+
+RUN chmod +x /usr/local/bin/convert.sh
+RUN echo "* * * * * /usr/local/bin/convert.sh >> /var/log/convert.log 2>&1" > /etc/cron.d/qcow2-cron
+
+CMD ["/usr/local/bin/convert.sh"]
