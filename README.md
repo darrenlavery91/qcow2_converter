@@ -19,7 +19,7 @@ This Podman container, built from the `debian:latest` image, is designed to auto
 2. **Run the container:**
 
     ```bash
-    podman run -d -v /path/to/local/input:/data/input -v /path/to/local/output:/data/output image-converter
+    podman run -d -v /path/to/local/input:/data/input -v /path/to/local/output:/data/output -v  /path/to/local/complete:/data/complete image-converter
     ```
 
    Replace `/path/to/local/input` and `/path/to/local/output` with the paths to your local directories for input and output files.
@@ -37,7 +37,7 @@ The container uses a cron job to execute the `convert.sh` script every minute. T
 
 The `convert.sh` script performs the following steps:
 
-1. Scans the `/data/input` directory for supported file types (`.vhd`, `.vhdx`, `.ova`). #will plan to add more in the future#
+1. Scans the `/data/input` directory for supported file types (`.vhd`, `.vhdx`, `.ova`, `.raw`). #will plan to add more in the future#
 2. Converts each file to the QCOW2 format using `qemu-img`.
 3. Logs the conversion status to `/var/log/convert.log`.
 
