@@ -2,9 +2,9 @@ FROM debian:latest
 
 RUN apt-get update && \
     apt-get install -y qemu-utils && \
-    rm -rf /var/lib/apt/lists/* \
-
-RUN mkdir -p /data/input /data/output
+    rm -rf /var/lib/apt/lists/* 
+    
+RUN mkdir -p /data/input /data/output /data/complete /var/log
 RUN mkdir -p /var/log/
 COPY convert.sh /usr/local/bin/convert.sh
 
