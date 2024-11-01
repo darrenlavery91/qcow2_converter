@@ -2,7 +2,7 @@
 
 INPUT_DIR="/data/input"
 OUTPUT_DIR="/data/output"
-
+complete="/data/complete"
 # Function to convert files
 convert_files() {
     for file in "$INPUT_DIR"/*; do
@@ -16,7 +16,7 @@ convert_files() {
                     echo "Converting $file to $output_file" >> /var/log/convert.log
                     qemu-img convert -f "${filename##*.}" -O qcow2 "$file" "$output_file"
                     echo "Conversion complete: $output_file" >> /var/log/convert.log
-                    mv $file $file.complete
+                    
                     ;;
                 *)
                     echo "Unsupported file type: $file" >> /var/log/convert.log
@@ -30,4 +30,5 @@ convert_files() {
 while true; do
     convert_files
     sleep 10 # Wait before checking again
+    mv $file $complete
 done
