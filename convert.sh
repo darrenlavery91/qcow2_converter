@@ -12,10 +12,11 @@ convert_files() {
 
             # Check file extension
             case "${filename##*.}" in
-                vhd|vhdx|ova)
+                vhd|vhdx|ova|raw)
                     echo "Converting $file to $output_file" >> /var/log/convert.log
                     qemu-img convert -f "${filename##*.}" -O qcow2 "$file" "$output_file"
                     echo "Conversion complete: $output_file" >> /var/log/convert.log
+                    mv $file $file.complete
                     ;;
                 *)
                     echo "Unsupported file type: $file" >> /var/log/convert.log
