@@ -22,7 +22,7 @@ This Podman container, built from the `debian:latest` image, is designed to auto
     podman run -d -v /path/to/local/input:/data/input -v /path/to/local/output:/data/output -v  /path/to/local/complete:/data/complete image-converter
     ```
 
-   Replace `/path/to/local/input` and `/path/to/local/output` with the paths to your local directories for input and output files.
+   Replace `/path/to/local/input` and `/path/to/local/output` and `/path/to/local/complete` with the paths to your local directories for input and output files.
 
 ## Directory Structure
 
